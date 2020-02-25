@@ -90,7 +90,7 @@ func main() {
 	var host, user, dbname, password string
 	var port uint
 	flag.StringVar(&host, "host", "localhost", "Host name")
-	flag.StringVar(&user, "user", "assessment1", "Database user's name")
+	flag.StringVar(&user, "user", "assess1", "Database user's name")
 	flag.StringVar(&dbname, "dbname", "assessment", "Database base name")
 	flag.StringVar(&password, "password", "1234test", "Database password")
 	flag.UintVar(&port, "port", 8010, "Server port")
@@ -109,7 +109,7 @@ func main() {
 	router.HandleFunc("/articles", getArticles).Methods("GET")
 	router.HandleFunc("/article/{id}", getArticle).Methods("GET")
 	router.HandleFunc("/article/{id}", deleteArticle).Methods("DELETE")
-	fmt.Printf("Starting server at port :%d", port)
+	fmt.Printf("Starting server at port :%d\n", port)
 	log.Fatal(http.ListenAndServe(":8011", router))
 }
 
