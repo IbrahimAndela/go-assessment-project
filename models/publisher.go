@@ -10,10 +10,6 @@ type PublisherModel struct {
 	Name string `gorm:"type:varchar(100)"`
 }
 
-func (p *PublisherModel) save(db *gorm.DB) (bool, error) {
-	return true, nil
-}
-
 //GetOrCreatePublisher get or create publisher
 func GetOrCreatePublisher(db *gorm.DB, name string) PublisherModel {
 	var publisher = PublisherModel{}

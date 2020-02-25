@@ -10,10 +10,6 @@ type CategoryModel struct {
 	Title string `gorm:"type:varchar(100)"`
 }
 
-func (p *CategoryModel) save(db *gorm.DB) (bool, error) {
-	return true, nil
-}
-
 //GetOrCreateCategory get or create category
 func GetOrCreateCategory(db *gorm.DB, title string) CategoryModel {
 	var category = CategoryModel{}

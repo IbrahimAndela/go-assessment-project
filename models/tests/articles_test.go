@@ -1,6 +1,7 @@
 package models
 
 import (
+	"assessment1/models"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -12,15 +13,15 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 )
 
-func load() *Articles {
-	fl, err := os.Open("data/articles.json")
+func load() *models.Articles {
+	fl, err := os.Open("../data/articles.json")
 	defer fl.Close()
 
 	if err != nil {
 		fmt.Println(err.Error())
 	}
 
-	var articles Articles
+	var articles models.Articles
 	readContent, err := ioutil.ReadAll(fl)
 	if err != nil {
 		fmt.Printf(err.Error())
@@ -35,11 +36,11 @@ func TestCreateArticles(t *testing.T) {
 		fmt.Println("Database error", err.Error())
 	}
 	defer db.Close()
-	db.Delete(&ArticleModel{})
-	var article = ArticleModel{Title: "Title"}
+	db.Delete(&models.ArticleModel{})
+	var article = models.ArticleModel{Title: "Title"}
 	db.Create(&article)
 
-	var articles = []ArticleModel{}
+	var articles = []models.ArticleModel{}
 	db.Find(&articles)
 	var count = len(articles)
 	if !reflect.DeepEqual(1, len(articles)) {
